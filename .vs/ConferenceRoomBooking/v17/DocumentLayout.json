@@ -1,0 +1,126 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\source\\repos\\ConferenceRoomBooking\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{98987EE4-0C86-4CA2-9C8D-9F8C55D52299}|ConferenceRoomBooking\\ConferenceRoomBooking.csproj|c:\\users\\user\\source\\repos\\conferenceroombooking\\conferenceroombooking\\datalayer\\dbcontext\\conferenceroombookingscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98987EE4-0C86-4CA2-9C8D-9F8C55D52299}|ConferenceRoomBooking\\ConferenceRoomBooking.csproj|solutionrelative:conferenceroombooking\\datalayer\\dbcontext\\conferenceroombookingscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98987EE4-0C86-4CA2-9C8D-9F8C55D52299}|ConferenceRoomBooking\\ConferenceRoomBooking.csproj|c:\\users\\user\\source\\repos\\conferenceroombooking\\conferenceroombooking\\datalayer\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98987EE4-0C86-4CA2-9C8D-9F8C55D52299}|ConferenceRoomBooking\\ConferenceRoomBooking.csproj|solutionrelative:conferenceroombooking\\datalayer\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98987EE4-0C86-4CA2-9C8D-9F8C55D52299}|ConferenceRoomBooking\\ConferenceRoomBooking.csproj|c:\\users\\user\\source\\repos\\conferenceroombooking\\conferenceroombooking\\datalayer\\entities\\unavailabilityperiod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98987EE4-0C86-4CA2-9C8D-9F8C55D52299}|ConferenceRoomBooking\\ConferenceRoomBooking.csproj|solutionrelative:conferenceroombooking\\datalayer\\entities\\unavailabilityperiod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98987EE4-0C86-4CA2-9C8D-9F8C55D52299}|ConferenceRoomBooking\\ConferenceRoomBooking.csproj|c:\\users\\user\\source\\repos\\conferenceroombooking\\conferenceroombooking\\datalayer\\entities\\reservationholder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98987EE4-0C86-4CA2-9C8D-9F8C55D52299}|ConferenceRoomBooking\\ConferenceRoomBooking.csproj|solutionrelative:conferenceroombooking\\datalayer\\entities\\reservationholder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98987EE4-0C86-4CA2-9C8D-9F8C55D52299}|ConferenceRoomBooking\\ConferenceRoomBooking.csproj|c:\\users\\user\\source\\repos\\conferenceroombooking\\conferenceroombooking\\datalayer\\entities\\conferenceroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98987EE4-0C86-4CA2-9C8D-9F8C55D52299}|ConferenceRoomBooking\\ConferenceRoomBooking.csproj|solutionrelative:conferenceroombooking\\datalayer\\entities\\conferenceroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{98987EE4-0C86-4CA2-9C8D-9F8C55D52299}|ConferenceRoomBooking\\ConferenceRoomBooking.csproj|c:\\users\\user\\source\\repos\\conferenceroombooking\\conferenceroombooking\\datalayer\\entities\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{98987EE4-0C86-4CA2-9C8D-9F8C55D52299}|ConferenceRoomBooking\\ConferenceRoomBooking.csproj|solutionrelative:conferenceroombooking\\datalayer\\entities\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ConferenceRoomBookingsContext.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ConferenceRoomBooking\\ConferenceRoomBooking\\DataLayer\\DBContext\\ConferenceRoomBookingsContext.cs",
+              "RelativeDocumentMoniker": "ConferenceRoomBooking\\DataLayer\\DBContext\\ConferenceRoomBookingsContext.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\ConferenceRoomBooking\\ConferenceRoomBooking\\DataLayer\\DBContext\\ConferenceRoomBookingsContext.cs",
+              "RelativeToolTip": "ConferenceRoomBooking\\DataLayer\\DBContext\\ConferenceRoomBookingsContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-11T11:01:30.874Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UnavailabilityPeriod.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ConferenceRoomBooking\\ConferenceRoomBooking\\DataLayer\\Entities\\UnavailabilityPeriod.cs",
+              "RelativeDocumentMoniker": "ConferenceRoomBooking\\DataLayer\\Entities\\UnavailabilityPeriod.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\ConferenceRoomBooking\\ConferenceRoomBooking\\DataLayer\\Entities\\UnavailabilityPeriod.cs",
+              "RelativeToolTip": "ConferenceRoomBooking\\DataLayer\\Entities\\UnavailabilityPeriod.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-11T10:43:10.625Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ConferenceRoomBooking\\ConferenceRoomBooking\\DataLayer\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "ConferenceRoomBooking\\DataLayer\\Entities\\User.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\ConferenceRoomBooking\\ConferenceRoomBooking\\DataLayer\\Entities\\User.cs",
+              "RelativeToolTip": "ConferenceRoomBooking\\DataLayer\\Entities\\User.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-11T10:42:42.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ReservationHolder.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ConferenceRoomBooking\\ConferenceRoomBooking\\DataLayer\\Entities\\ReservationHolder.cs",
+              "RelativeDocumentMoniker": "ConferenceRoomBooking\\DataLayer\\Entities\\ReservationHolder.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\ConferenceRoomBooking\\ConferenceRoomBooking\\DataLayer\\Entities\\ReservationHolder.cs",
+              "RelativeToolTip": "ConferenceRoomBooking\\DataLayer\\Entities\\ReservationHolder.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-11T10:42:27.794Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Booking.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ConferenceRoomBooking\\ConferenceRoomBooking\\DataLayer\\Entities\\Booking.cs",
+              "RelativeDocumentMoniker": "ConferenceRoomBooking\\DataLayer\\Entities\\Booking.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\ConferenceRoomBooking\\ConferenceRoomBooking\\DataLayer\\Entities\\Booking.cs",
+              "RelativeToolTip": "ConferenceRoomBooking\\DataLayer\\Entities\\Booking.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAgwB8AAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-11T10:41:56.456Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ConferenceRoom.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\ConferenceRoomBooking\\ConferenceRoomBooking\\DataLayer\\Entities\\ConferenceRoom.cs",
+              "RelativeDocumentMoniker": "ConferenceRoomBooking\\DataLayer\\Entities\\ConferenceRoom.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\ConferenceRoomBooking\\ConferenceRoomBooking\\DataLayer\\Entities\\ConferenceRoom.cs",
+              "RelativeToolTip": "ConferenceRoomBooking\\DataLayer\\Entities\\ConferenceRoom.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-11T10:41:44.418Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
