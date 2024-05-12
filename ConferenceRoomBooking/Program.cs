@@ -1,16 +1,25 @@
+using ConferenceRoomBooking.DataLayer.DBContext;
 using ConferenceRoomBooking.DataLayer.Repositories;
 using ConferenceRoomBooking.Services;
 using ConferenceRoomBooking.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<ConferenceRoomBookingsContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Library"));
+});
+
+    // Other service registrations...
 
 
-#region 
-//dependecy injection
-builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+    #region 
+    //dependecy injection
+    builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IReservationHolderRepository, ReservationHolderRepository>();
 builder.Services.AddScoped<IConferenceRoomRepository, ConferenceRoomRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
