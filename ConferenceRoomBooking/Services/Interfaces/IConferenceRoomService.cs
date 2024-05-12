@@ -4,6 +4,7 @@ namespace ConferenceRoomBooking.Services.Interfaces
 {
     public interface IConferenceRoomService
     {
+
         void AddConferenceRoom(string code, int maxCapacity);
         ConferenceRoomModel GetConferenceRoomById(int id);
         IEnumerable<ConferenceRoomModel> GetAllConferenceRooms();

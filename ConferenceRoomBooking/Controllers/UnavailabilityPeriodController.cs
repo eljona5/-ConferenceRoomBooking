@@ -1,5 +1,5 @@
 ﻿using ConferenceRoomBooking.Models;
-using ConferenceRoomBooking.Services;
+using ConferenceRoomBooking.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

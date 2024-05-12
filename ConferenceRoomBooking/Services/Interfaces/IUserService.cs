@@ -5,7 +5,9 @@ namespace ConferenceRoomBooking.Services.Interfaces
     public interface IUserService
     {
         void AddUser(string name, string surname, string email);
+        UserModel GetUserById(int id);
         IEnumerable<UserModel> GetAllUsers();
-        // Add other methods related to users
+        void UpdateUser(int id, string name, string surname, string email);
+        void DeleteUser(int id);
     }
 }

@@ -1,7 +1,28 @@
+using ConferenceRoomBooking.DataLayer.Repositories;
+using ConferenceRoomBooking.Services;
+using ConferenceRoomBooking.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+#region 
+//dependecy injection
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IReservationHolderRepository, ReservationHolderRepository>();
+builder.Services.AddScoped<IConferenceRoomRepository, ConferenceRoomRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUnavailabilityPeriodRepository, UnavailabilityPeriodRepository>();
+
+
+builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IReservationHolderService, ReservationHolderService>();
+builder.Services.AddScoped<IConferenceRoomService, ConferenceRoomService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUnavailabilityPeriodService, UnavailabilityPeriodService>();
+#endregion
 
 var app = builder.Build();
 
