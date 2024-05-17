@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 [Route("api/[controller]")]
 [ApiController]
-public class UnavailabilityPeriodController : ControllerBase
+public class UnavailabilityPeriodController : Controller
 {
     private readonly IUnavailabilityPeriodService _unavailabilityPeriodService;
 

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 [Route("api/[controller]")]
 [ApiController]
-public class UserController : ControllerBase
+public class UserController : Controller
 {
     private readonly IUserService _userService;
 

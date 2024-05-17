@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 [Route("api/[controller]")]
 [ApiController]
-public class ConferenceRoomController : ControllerBase
+public class ConferenceRoomController : Controller
 {
     private readonly IConferenceRoomService _conferenceRoomService;
 

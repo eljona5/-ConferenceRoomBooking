@@ -136,3 +136,8 @@ C:\Users\User\source\repos\ConferenceRoomBooking\ConferenceRoomBooking\bin\Debug
 C:\Users\User\source\repos\ConferenceRoomBooking\ConferenceRoomBooking\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\User\source\repos\ConferenceRoomBooking\ConferenceRoomBooking\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\User\source\repos\ConferenceRoomBooking\ConferenceRoomBooking\obj\Debug\net8.0\Conferen.4D48AA1A.Up2Date
+C:\Users\User\source\repos\ConferenceRoomBooking\ConferenceRoomBooking\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\User\source\repos\ConferenceRoomBooking\ConferenceRoomBooking\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\User\source\repos\ConferenceRoomBooking\ConferenceRoomBooking\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\User\source\repos\ConferenceRoomBooking\ConferenceRoomBooking\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\User\source\repos\ConferenceRoomBooking\ConferenceRoomBooking\obj\Debug\net8.0\ConferenceRoomBooking.MvcApplicationPartsAssemblyInfo.cs

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 [Route("api/[controller]")]
 [ApiController]
-public class ReservationHolderController : ControllerBase
+public class ReservationHolderController : Controller
 {
     private readonly IReservationHolderService _reservationHolderService;
     public ReservationHolderController(IReservationHolderService reservationHolderService)
