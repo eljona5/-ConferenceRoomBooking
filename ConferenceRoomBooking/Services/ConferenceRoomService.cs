@@ -1,4 +1,5 @@
-﻿using ConferenceRoomBooking.Models;
+﻿using ConferenceRoomBooking.DataLayer.Repositories;
+using ConferenceRoomBooking.Models;
 using ConferenceRoomBooking.Services.Interfaces;
 
 namespace ConferenceRoomBooking.Services
