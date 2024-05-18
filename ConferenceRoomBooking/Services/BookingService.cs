@@ -18,7 +18,7 @@ namespace ConferenceRoomBooking.Services
             _bookingRepository.AddBooking(new BookingModel
             {
                 Code = code,
-                NumPeople = numPeople,
+                NumberOfPeople = numPeople,
                 IsConfirmed = isConfirmed,
                 RoomId = roomId,
                 StartDate = startDate,
@@ -47,7 +47,7 @@ namespace ConferenceRoomBooking.Services
             if (booking != null)
             {
                 booking.Code = code;
-                booking.NumPeople = numPeople;
+                booking.NumberOfPeople = numPeople;
                 booking.IsConfirmed = isConfirmed;
                 booking.RoomId = roomId;
                 booking.StartDate = startDate;
