@@ -20,7 +20,7 @@ public class BookingController : Controller
     {
         try
         {
-            _bookingService.AddBooking(model.Code, model.NumPeople, model.IsConfirmed, model.RoomId, model.StartDate, model.EndDate);
+            _bookingService.AddBooking(model.Code, model.NumberOfPeople, model.IsConfirmed, model.RoomId, model.StartDate, model.EndDate);
             return Ok("Booking created successfully");
         }
         catch (Exception ex)
@@ -45,7 +45,7 @@ public class BookingController : Controller
     {
         try
         {
-            _bookingService.UpdateBooking(id, model.Code, model.NumPeople, model.IsConfirmed, model.RoomId, model.StartDate, model.EndDate);
+            _bookingService.UpdateBooking(id, model.Code, model.NumberOfPeople, model.IsConfirmed, model.RoomId, model.StartDate, model.EndDate);
             return Ok("Booking updated successfully");
         }
         catch (Exception ex)

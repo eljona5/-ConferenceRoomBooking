@@ -11,8 +11,8 @@ namespace ConferenceRoomBooking.DataLayer.Repositories
             // Initialize with some sample data for demonstration
             _bookings = new List<BookingModel>
         {
-            new BookingModel { Id = 1, Code = "B001", NumPeople = 5, IsConfirmed = true, RoomId = 1, StartDate = new DateTime(2024, 5, 12, 10, 0, 0), EndDate = new DateTime(2024, 5, 12, 12, 0, 0), IsDeleted = false },
-            new BookingModel { Id = 2, Code = "B002", NumPeople = 8, IsConfirmed = false, RoomId = 2, StartDate = new DateTime(2024, 5, 13, 14, 0, 0), EndDate = new DateTime(2024, 5, 13, 16, 0, 0), IsDeleted = false }
+            new BookingModel { Id = 1, Code = "B001", NumberOfPeople = 5, IsConfirmed = true, RoomId = 1, StartDate = new DateTime(2024, 5, 12, 10, 0, 0), EndDate = new DateTime(2024, 5, 12, 12, 0, 0), IsDeleted = false },
+            new BookingModel { Id = 2, Code = "B002", NumberOfPeople = 8, IsConfirmed = false, RoomId = 2, StartDate = new DateTime(2024, 5, 13, 14, 0, 0), EndDate = new DateTime(2024, 5, 13, 16, 0, 0), IsDeleted = false }
         };
         }
 
@@ -44,7 +44,7 @@ namespace ConferenceRoomBooking.DataLayer.Repositories
             if (existingBooking != null)
             {
                 existingBooking.Code = booking.Code;
-                existingBooking.NumPeople = booking.NumPeople;
+                existingBooking.NumberOfPeople = booking.NumberOfPeople;
                 existingBooking.IsConfirmed = booking.IsConfirmed;
                 existingBooking.RoomId = booking.RoomId;
                 existingBooking.StartDate = booking.StartDate;
