@@ -10,5 +10,6 @@
         public string PhoneNumber { get; set; }
         public string Notes { get; set; }
         public int BookingId { get; set; }
+        public string? PhotoPath { get; set; }
     }
 }

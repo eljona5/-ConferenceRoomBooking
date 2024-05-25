@@ -1,70 +1,156 @@
-﻿using ConferenceRoomBooking.Models;
+﻿using ConferenceRoomBooking.DataLayer.DBContext;
+using ConferenceRoomBooking.DataLayer.Entities;
+using ConferenceRoomBooking.Models;
+
 using ConferenceRoomBooking.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-[Route("api/[controller]")]
-[ApiController]
-public class BookingController : Controller
+namespace ConferenceRoomBooking
 {
-    private readonly IBookingService _bookingService;
-
-    public BookingController(IBookingService bookingService)
+    public class BookingController : Controller
     {
-        _bookingService = bookingService;
-    }
+        private readonly ConferenceRoomBookingContext _conferenceRoomBookingContext;
+        public BookingController(ConferenceRoomBookingContext onlineLibraryDbContext)
+        {
+            _conferenceRoomBookingContext = onlineLibraryDbContext;
+        }
 
-    [HttpPost]
-    public IActionResult CreateBooking([FromBody] BookingModel model)
-    {
-        try
+        public IActionResult Index(string filterTerm)
         {
-            _bookingService.AddBooking(model.Code, model.NumberOfPeople, model.IsConfirmed, model.RoomId, model.StartDate, model.EndDate);
-            return Ok("Booking created successfully");
-        }
-        catch (Exception ex)
-        {
-            return BadRequest($"Failed to create booking: {ex.Message}");
-        }
-    }
+            var bookings = _conferenceRoomBookingContext.Bookings
+            .Where(p => (p.IsConfirmed == false || p.IsConfirmed == null))
+            .OrderBy(p => p.Code).ThenBy(p => p.StartDate)
+            .ThenBy(p => p.EndDate)
+            .ToList();
 
-    [HttpGet("{id}")]
-    public IActionResult ViewBooking(int id)
-    {
-        var booking = _bookingService.GetBookingById(id);
-        if (booking == null)
-        {
-            return NotFound("Booking not found");
-        }
-        return Ok(booking);
-    }
+            if (!string.IsNullOrEmpty(filterTerm))
+            {
+                bookings = bookings.Where(p => p.Code.Contains(filterTerm)).ToList();
 
-    [HttpPut("{id}")]
-    public IActionResult UpdateBooking(int id, [FromBody] BookingModel model)
-    {
-        try
-        {
-            _bookingService.UpdateBooking(id, model.Code, model.NumberOfPeople, model.IsConfirmed, model.RoomId, model.StartDate, model.EndDate);
-            return Ok("Booking updated successfully");
+            }
+            return View(bookings);
         }
-        catch (Exception ex)
+        public IActionResult Details(int id)
         {
-            return BadRequest($"Failed to update booking: {ex.Message}");
+            var bookings = _conferenceRoomBookingContext.Bookings
+                .Where(p => p.Id == id)
+                .FirstOrDefault();
+            return View(bookings);
         }
-    }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public IActionResult Create([Bind("Code,StartDate,EndDate,Room")] Booking booking)
+        {
 
-    [HttpDelete("{id}")]
-    public IActionResult DeleteBooking(int id)
-    {
-        try
-        {
-            _bookingService.DeleteBooking(id);
-            return Ok("Booking deleted successfully");
+
+            if (ModelState.IsValid)
+            {
+                var roomExists = _conferenceRoomBookingContext.Bookings
+                     .Where(p => p.Id == booking.RoomId
+                     && p.IsConfirmed != false
+                     && p.IsDeleted != true)
+                .FirstOrDefault();
+
+                if (roomExists == null)
+                {
+                    return StatusCode(500, "Record does not existst");
+                }
+                booking.StartDate = DateTime.Now;
+                _conferenceRoomBookingContext.Bookings.Add(booking);
+                _conferenceRoomBookingContext.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return StatusCode(500, "Information is invalid");
+            }
         }
-        catch (Exception ex)
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Update([FromQuery] int id)
         {
-            return BadRequest($"Failed to delete booking: {ex.Message}");
+            var book = _conferenceRoomBookingContext.Bookings
+                .Where(p => p.Id == id)
+                .FirstOrDefault();
+            return View(book);
         }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public IActionResult Update([Bind("Title, Description, AuthorID, Category,Id")] Booking booking)
+        {
+            if (ModelState.IsValid)
+            {
+                booking.StartDate = DateTime.Now;
+                _conferenceRoomBookingContext.Bookings.Update(booking);
+                _conferenceRoomBookingContext.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return StatusCode(500, "Information is invalid");
+            }
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost, ActionName("Delete")]
+        public IActionResult Delete(int Id)
+        {
+            var booking = _conferenceRoomBookingContext.Bookings
+                .Where(p => p.Id == Id)
+                .FirstOrDefault();
+            //Soft Delete
+            booking.IsDeleted = true;
+            //book.UpdateDate = DateTime.Now;
+            //Hard Delete
+            //_onlineLibraryDbContext.Authors.Remove(author);
+            _conferenceRoomBookingContext.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost, ActionName("DeActivate")]
+        public IActionResult DeActivate(int Id)
+        {
+            var booking = _conferenceRoomBookingContext.Bookings
+                .Where(p => p.Id == Id)
+                .FirstOrDefault();
+            //Soft Delete
+            booking.IsDeleted = false;
+            //book.UpdateDate = DateTime.Now;
+            //Hard Delete
+            //_onlineLibraryDbContext.Authors.Remove(author);
+            _conferenceRoomBookingContext.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost, ActionName("Activate")]
+        public IActionResult Activate(int Id)
+        {
+            var booking = _conferenceRoomBookingContext.Bookings
+                .Where(p => p.Id == Id)
+                .FirstOrDefault();
+            //Soft Delete
+            booking.IsDeleted = true;
+            // book.UpdateDate = DateTime.Now;
+            //Hard Delete
+            //_onlineLibraryDbContext.Authors.Remove(author);
+            _conferenceRoomBookingContext.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
+

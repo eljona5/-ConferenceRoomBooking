@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ConferenceRoomBooking.DataLayer.Entities.Booking>
+   
+  <a asp-action="Create">Create New</a>
+@using (Html.BeginForm("Index", "Booking", FormMethod.Get))
+{
+    <label> Filter</label>
+    @Html.TextBox("filterTerm") ;
+    <input type="submit" value="Fiter" />
+}
+<div class="card">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Room</th>
+                <th scope="col">NumberOfPeople</th>
+                <th scope="col">StartDate</th>
+                <th scope="col">EndDate</th>
+                <th scope="col">Action</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Code
+                    </td>
+                    <td>
+                        @item.Room.Code
+                    </td>
+                    <td>
+                        @item.NumberOfPeople
+                    </td>
+                    <td>
+                        @item.StartDate
+                    </td>
+                    <td>
+                        @item.EndDate
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Update" asp-route-id="@item.Id">Update</a>
+                    </td>
+                    <td>
+                        @(item.IsConfirmed == false ? "Non Active" : "Active")
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+  
