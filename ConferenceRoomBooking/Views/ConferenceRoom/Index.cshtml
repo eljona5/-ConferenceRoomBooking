@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ConferenceRoomBooking.DataLayer.Entities.ConferenceRoom>
+
+
+<h1>Conference Room</h1>
+
+<p>
+    <a asp-action="Create">Create New Room</a>
+</p>
+
+<p>
+    @using (Html.BeginForm("Index", "ConferenceRoom", FormMethod.Get))
+    {
+        <label> Filter</label>
+        @Html.TextBox("filterTerm")
+        ;
+        <input type="submit" value="Filter" />
+    }
+</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Room ID</th>
+                <th>Room Code</th>
+                <th>Maximum Capacity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var room in Model)
+            {
+                <tr>
+                    <td>@room.Id</td>
+                    <td>@room.Code</td>
+                    <td>@room.MaximumCapacity</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+ 

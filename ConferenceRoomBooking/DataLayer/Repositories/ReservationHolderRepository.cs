@@ -10,11 +10,11 @@ namespace ConferenceRoomBooking.DataLayer.Repositories
             public ReservationHolderRepository()
             {
                 // Initialize with some sample data for demonstration
-                _reservationHolders = new List<ReservationHolderModel>
-        {
-            new ReservationHolderModel { Id = 1, IdCardNumber = "123456789", Name = "Alice", Surname = "Smith", Email = "alice@example.com", PhoneNumber = "1234567890", Notes = "Guest speaker", BookingId = 1 },
-            new ReservationHolderModel { Id = 2, IdCardNumber = "987654321", Name = "Bob", Surname = "Johnson", Email = "bob@example.com", PhoneNumber = "9876543210", Notes = "VIP guest", BookingId = 2 }
-        };
+        //        _reservationHolders = new List<ReservationHolderModel>
+        //{
+        //    new ReservationHolderModel { Id = 1, IdCardNumber = "123456789", Name = "Alice", Surname = "Smith", Email = "alice@example.com", PhoneNumber = "1234567890", Notes = "Guest speaker", BookingId = 1 },
+        //    new ReservationHolderModel { Id = 2, IdCardNumber = "987654321", Name = "Bob", Surname = "Johnson", Email = "bob@example.com", PhoneNumber = "9876543210", Notes = "VIP guest", BookingId = 2 }
+        //};
             }
 
             public void AddReservationHolder(ReservationHolderModel reservationHolder)

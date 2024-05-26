@@ -9,11 +9,11 @@ namespace ConferenceRoomBooking.DataLayer.Repositories
         public UserRepository()
         {
             // Initialize with some sample data for demonstration
-            _users = new List<UserModel>
-        {
-            new UserModel { Id = 1, Name = "John", Surname = "Doe", Email = "john@example.com", IsDeleted = false },
-            new UserModel { Id = 2, Name = "Jane", Surname = "Smith", Email = "jane@example.com", IsDeleted = false }
-        };
+        //    _users = new List<UserModel>
+        //{
+        //    new UserModel { Id = 1, Name = "John", Surname = "Doe", Email = "john@example.com", IsDeleted = false },
+        //    new UserModel { Id = 2, Name = "Jane", Surname = "Smith", Email = "jane@example.com", IsDeleted = false }
+        //};
         }
 
         public void AddUser(UserModel user)

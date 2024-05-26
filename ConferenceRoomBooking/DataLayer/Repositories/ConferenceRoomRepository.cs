@@ -9,11 +9,11 @@ namespace ConferenceRoomBooking.DataLayer.Repositories
         public ConferenceRoomRepository()
         {
             // Initialize with some sample data for demonstration
-            _conferenceRooms = new List<ConferenceRoomModel>
-        {
-            new ConferenceRoomModel { Id = 1, Code = "Room1", MaxCapacity = 10 },
-            new ConferenceRoomModel { Id = 2, Code = "Room2", MaxCapacity = 15 }
-        };
+        //    _conferenceRooms = new List<ConferenceRoomModel>
+        //{
+        //    new ConferenceRoomModel { Id = 1, Code = "Room1", MaxCapacity = 10 },
+        //    new ConferenceRoomModel { Id = 2, Code = "Room2", MaxCapacity = 15 }
+        //};
         }
 
         public void AddConferenceRoom(ConferenceRoomModel conferenceRoom)

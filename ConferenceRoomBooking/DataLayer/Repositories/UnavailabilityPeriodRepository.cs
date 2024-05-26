@@ -9,11 +9,11 @@ namespace ConferenceRoomBooking.DataLayer.Repositories
         public UnavailabilityPeriodRepository()
         {
             // Initialize with some sample data for demonstration
-            _unavailabilityPeriods = new List<UnavailabilityPeriodModel>
-        {
-            new UnavailabilityPeriodModel { Id = 1, StartDate = new DateTime(2024, 5, 20), EndDate = new DateTime(2024, 5, 25) },
-            new UnavailabilityPeriodModel { Id = 2, StartDate = new DateTime(2024, 6, 10), EndDate = new DateTime(2024, 6, 15) }
-        };
+        //    _unavailabilityPeriods = new List<UnavailabilityPeriodModel>
+        //{
+        //    new UnavailabilityPeriodModel { Id = 1, StartDate = new DateTime(2024, 5, 20), EndDate = new DateTime(2024, 5, 25) },
+        //    new UnavailabilityPeriodModel { Id = 2, StartDate = new DateTime(2024, 6, 10), EndDate = new DateTime(2024, 6, 15) }
+        //};
         }
 
         public void AddUnavailabilityPeriod(UnavailabilityPeriodModel unavailabilityPeriod)

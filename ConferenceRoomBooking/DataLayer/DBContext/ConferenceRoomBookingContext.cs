@@ -6,7 +6,7 @@ using System.Reflection.Emit;
 
 namespace ConferenceRoomBooking.DataLayer.DBContext
 {
-    public class ConferenceRoomBookingContext : DbContext
+    public class ConferenceRoomBookingContext : IdentityDbContext
     {
         public ConferenceRoomBookingContext(DbContextOptions<ConferenceRoomBookingContext> options)
         : base(options)
@@ -16,7 +16,7 @@ namespace ConferenceRoomBooking.DataLayer.DBContext
         public DbSet<ConferenceRoom> ConferenceRooms { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<ReservationHolder> ReservationHolders { get; set; }
-      //  public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<UnavailabilityPeriod> UnavailabilityPeriods { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

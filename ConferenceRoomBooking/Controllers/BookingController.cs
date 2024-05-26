@@ -5,6 +5,7 @@ using ConferenceRoomBooking.Models;
 using ConferenceRoomBooking.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,24 +17,24 @@ namespace ConferenceRoomBooking
     public class BookingController : Controller
     {
         private readonly ConferenceRoomBookingContext _conferenceRoomBookingContext;
-        public BookingController(ConferenceRoomBookingContext onlineLibraryDbContext)
+        public BookingController(ConferenceRoomBookingContext conferenceRoomBookingContext)
         {
-            _conferenceRoomBookingContext = onlineLibraryDbContext;
+            _conferenceRoomBookingContext = conferenceRoomBookingContext;
         }
 
         public IActionResult Index(string filterTerm)
         {
-            var bookings = _conferenceRoomBookingContext.Bookings
-            .Where(p => (p.IsConfirmed == false || p.IsConfirmed == null))
-            .OrderBy(p => p.Code).ThenBy(p => p.StartDate)
-            .ThenBy(p => p.EndDate)
-            .ToList();
+            var bookings = _conferenceRoomBookingContext.Bookings;
+            //.Where(p => (p.IsConfirmed == false || p.IsConfirmed == null))
+            //.OrderBy(p => p.Code).ThenBy(p => p.StartDate)
+            //.ThenBy(p => p.EndDate)
+            //.ToList();
 
-            if (!string.IsNullOrEmpty(filterTerm))
-            {
-                bookings = bookings.Where(p => p.Code.Contains(filterTerm)).ToList();
+            //if (!string.IsNullOrEmpty(filterTerm))
+            //{
+            //    bookings = bookings.Where(p => p.Code.Contains(filterTerm)).ToList();
 
-            }
+            //}
             return View(bookings);
         }
         public IActionResult Details(int id)
@@ -117,40 +118,66 @@ namespace ConferenceRoomBooking
             _conferenceRoomBookingContext.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
+        private readonly ConferenceRoomBookingContext _context;
 
-        [Authorize(Roles = "Admin")]
-        [HttpPost, ActionName("DeActivate")]
-        public IActionResult DeActivate(int Id)
+        [BindProperty]
+        public Booking Booking { get; set; }
+
+        public SelectList Rooms { get; set; }
+        public SelectList ReservationHolders { get; set; }
+
+        public IActionResult OnGet()
         {
-            var booking = _conferenceRoomBookingContext.Bookings
-                .Where(p => p.Id == Id)
-                .FirstOrDefault();
-            //Soft Delete
-            booking.IsDeleted = false;
-            //book.UpdateDate = DateTime.Now;
-            //Hard Delete
-            //_onlineLibraryDbContext.Authors.Remove(author);
-            _conferenceRoomBookingContext.SaveChanges();
-
-            return RedirectToAction(nameof(Index));
+            Rooms = new SelectList(_context.ConferenceRooms, "Id", "Code");
+            ReservationHolders = new SelectList(_context.ReservationHolders, "Id", "Name");
+            return View();
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpPost, ActionName("Activate")]
-        public IActionResult Activate(int Id)
+        public async Task<IActionResult> OnPostAsync()
         {
-            var booking = _conferenceRoomBookingContext.Bookings
-                .Where(p => p.Id == Id)
-                .FirstOrDefault();
-            //Soft Delete
-            booking.IsDeleted = true;
-            // book.UpdateDate = DateTime.Now;
-            //Hard Delete
-            //_onlineLibraryDbContext.Authors.Remove(author);
-            _conferenceRoomBookingContext.SaveChanges();
-            return RedirectToAction(nameof(Index));
-        }
+            if (!ModelState.IsValid)
+            {
+                Rooms = new SelectList(_context.ConferenceRooms, "Id", "Code");
+                ReservationHolders = new SelectList(_context.ReservationHolders, "Id", "Name");
+                return View();
 
+            }
+
+            var room = await _context.ConferenceRooms.FindAsync(Booking.RoomId);
+            if (room == null)
+            {
+                ModelState.AddModelError(string.Empty, "Selected room does not exist.");
+                return View();
+
+            }
+
+            if (Booking.NumberOfPeople > room.MaximumCapacity)
+            {
+                ModelState.AddModelError(string.Empty, "Number of people exceeds the maximum capacity.");
+                return View();
+
+            }
+
+            var overlappingBooking = _context.Bookings
+                .Where(b => b.RoomId == Booking.RoomId && b.IsConfirmed && !b.IsDeleted)
+                .FirstOrDefault(b => b.StartDate < Booking.EndDate && b.EndDate > Booking.StartDate);
+
+            if (overlappingBooking != null)
+            {
+                ModelState.AddModelError(string.Empty, "The room is already booked for the given time slot.");
+                return View();
+
+            }
+
+            _context.Bookings.Add(Booking);
+            await _context.SaveChangesAsync();
+
+            Booking.Code = $"{Booking.StartDate:yyyyMMdd}-{Booking.StartDate:HHmm}-{Booking.EndDate:HHmm}-C{Booking.RoomId:D3}";
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("Index");
+        }
     }
+
 }
 

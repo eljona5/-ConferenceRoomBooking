@@ -9,11 +9,11 @@ namespace ConferenceRoomBooking.DataLayer.Repositories
         public BookingRepository()
         {
             // Initialize with some sample data for demonstration
-            _bookings = new List<BookingModel>
-        {
-            new BookingModel { Id = 1, Code = "B001", NumberOfPeople = 5, IsConfirmed = true, RoomId = 1, StartDate = new DateTime(2024, 5, 12, 10, 0, 0), EndDate = new DateTime(2024, 5, 12, 12, 0, 0), IsDeleted = false },
-            new BookingModel { Id = 2, Code = "B002", NumberOfPeople = 8, IsConfirmed = false, RoomId = 2, StartDate = new DateTime(2024, 5, 13, 14, 0, 0), EndDate = new DateTime(2024, 5, 13, 16, 0, 0), IsDeleted = false }
-        };
+        //    _bookings = new List<BookingModel>
+        //{
+        //    new BookingModel { Id = 1, Code = "B001", NumberOfPeople = 5, IsConfirmed = true, RoomId = 1, StartDate = new DateTime(2024, 5, 12, 10, 0, 0), EndDate = new DateTime(2024, 5, 12, 12, 0, 0), IsDeleted = false },
+        //    new BookingModel { Id = 2, Code = "B002", NumberOfPeople = 8, IsConfirmed = false, RoomId = 2, StartDate = new DateTime(2024, 5, 13, 14, 0, 0), EndDate = new DateTime(2024, 5, 13, 16, 0, 0), IsDeleted = false }
+        //};
         }
 
         public void AddBooking(BookingModel booking)

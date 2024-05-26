@@ -1,6 +1,7 @@
 ﻿using ConferenceRoomBooking.DataLayer.DBContext;
 using ConferenceRoomBooking.DataLayer.Entities;
 using ConferenceRoomBooking.Models;
+using ConferenceRoomBooking.Services;
 using ConferenceRoomBooking.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +13,29 @@ using System.Collections.Generic;
 public class ConferenceRoomController : Controller
 {
     private readonly IConferenceRoomService _conferenceRoomService;
+    private readonly ConferenceRoomBookingContext _conferenceRoomBookingContext;
 
-    public ConferenceRoomController(IConferenceRoomService conferenceRoomService)
+    public ConferenceRoomController(IConferenceRoomService conferenceRoomService, ConferenceRoomBookingContext conferenceRoomBookingContext)
     {
         _conferenceRoomService = conferenceRoomService;
+        _conferenceRoomBookingContext = conferenceRoomBookingContext;
     }
 
+    public IActionResult Index()
+    {
+        var conferenceRoom = _conferenceRoomBookingContext.ConferenceRooms;
+        //.Where(p => (p.IsConfirmed == false || p.IsConfirmed == null))
+        //.OrderBy(p => p.Code).ThenBy(p => p.StartDate)
+        //.ThenBy(p => p.EndDate)
+        //.ToList();
+
+        //if (!string.IsNullOrEmpty(filterTerm))
+        //{
+        //    bookings = bookings.Where(p => p.Code.Contains(filterTerm)).ToList();
+
+        //}
+        return View(conferenceRoom);
+    }
     [HttpPost]
     public IActionResult AddConferenceRoom([FromBody] ConferenceRoomModel model)
     {

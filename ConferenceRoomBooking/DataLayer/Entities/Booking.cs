@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ConferenceRoomBooking.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -23,6 +24,10 @@ namespace ConferenceRoomBooking.DataLayer.Entities
 
         [ForeignKey("RoomId")]
         public ConferenceRoom Room { get; set; }
+        //public int ReservationId { get; set; }
+
+       // [ForeignKey("ReservationHolderId")]
+       //public ReservationHolder ReservationHolder{ get; set; }
 
         public DateTime StartDate { get; set; }
 
