@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "UnavailabilityPeriods";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<UnavailabilityPeriod>
+
+<h1>Unavailability Periods</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var period in Model)
+        {
+            <tr>
+                <td>@period.StartDate</td>
+                <td>@period.EndDate</td>
+                <td>
+                    <a href="/UnavailabilityPeriods/Edit/@period.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/UnavailabilityPeriods/Create">Create New</a>

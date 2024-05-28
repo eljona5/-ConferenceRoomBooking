@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "ConferenceRooms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<ConferenceRoom>
+
+<h1>Conference Rooms</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Maximum Capacity</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var room in Model)
+        {
+            <tr>
+                <td>@room.Code</td>
+                <td>@room.MaximumCapacity</td>
+                <td>
+                    <a href="/ConferenceRooms/Edit/@room.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/ConferenceRooms/Create">Create New</a>

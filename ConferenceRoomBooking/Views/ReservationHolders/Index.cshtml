@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "ReservationHolders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<ReservationHolder>
+
+<h1>Reservation Holders</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Booking Code</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var holder in Model)
+        {
+            <tr>
+                <td>@holder.Name</td>
+                <td>@holder.Surname</td>
+                <td>@holder.Email</td>
+                <td>@holder.PhoneNumber</td>
+                <td>@holder.Booking.Code</td>
+                <td>
+                    <a href="/ReservationHolders/Edit/@holder.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/ReservationHolders/Create">Create New</a>
