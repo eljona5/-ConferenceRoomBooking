@@ -22,5 +22,7 @@ namespace ConferenceRoomBooking.DataLayer.Entities
         public int BookingId { get; set; }
         [ForeignKey("BookingId")]
         public Booking Booking { get; set; }
+
+       // public bool IsDeleted { get; set; } 
     }
 }

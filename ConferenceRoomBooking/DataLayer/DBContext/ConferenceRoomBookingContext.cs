@@ -6,7 +6,7 @@ using System.Reflection.Emit;
 
 namespace ConferenceRoomBooking.DataLayer.DBContext
 {
-    public class ConferenceRoomBookingContext : IdentityDbContext
+    public class ConferenceRoomBookingContext : DbContext
     {
         public ConferenceRoomBookingContext(DbContextOptions<ConferenceRoomBookingContext> options)
         : base(options)

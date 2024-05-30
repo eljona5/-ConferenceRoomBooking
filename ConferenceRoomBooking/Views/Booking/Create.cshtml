@@ -1,100 +1,48 @@
-﻿@using ConferenceRoomBooking.DataLayer.Entities
- @model ConferenceRoomBooking.DataLayer.Entities.Booking
-@* @{
-    ViewData["Title"] = "Create";
+﻿ @model ConferenceRoomBooking.DataLayer.Entities.Booking
+@{
+    ViewData["Title"] = "Create  Booking";
 }
-<h1>Create</h1>
-<div class="create-form">
-    <form asp-action="Create">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="NumberOfPeople" class="control-label"></label>
-            <input asp-for="NumberOfPeople" class="form-control" />
-            <span asp-validation-for="NumberOfPeople" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Room" class="control-label"></label>
-            <input asp-for="Room" class="form-control" />
-            <span asp-validation-for="Room" class="text-danger"></span>
-        </div>
 
-        <div class="form-group">
-            <label asp-for="StartDate" class="control-label"></label>
-            <input asp-for="StartDate" class="form-control" />
-            <span asp-validation-for="StartDate" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="EndDate" class="control-label"></label>
-            <input asp-for="EndDate" class="form-control" />
-            <span asp-validation-for="EndDate" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-primary" />
-        </div>
-    </form>
-</div>
-
-<style scoped>
-    .create-form {
-        border: solid black 1px;
-        max-height: 500px;
-        max-width: 500px;
-        margin: auto;
-        padding: 10px;
-    }
-    @{
-  ViewData["Title"] = "Create Booking";
-} *@
 
 <h1>Create Booking</h1>
 
-<h4>Booking</h4>
-<hr />
-<div class="row">
-    <div class="col-md-6">
-        <div class="create-form"> 
-    <form asp-action="Create">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <form method="post">
-            <div class="form-group">
-                <label asp-for="RoomId" class="control-label"></label>
-                <select asp-for="RoomId" class="form-control" ></select>
-                <span asp-validation-for="RoomId" class="text-danger"></span>
-            </div> 
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" />
-                <span asp-validation-for="EndDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberOfPeople" class="control-label"></label>
-                <input asp-for="NumberOfPeople" class="form-control" />
-                <span asp-validation-for="NumberOfPeople" class="text-danger"></span>
-            </div>
-            
-            <button type="submit" class="btn btn-primary">Create</button>
-        </form>
-            </form>
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Code" class="control-label"></label>
+        <input asp-for="Code" class="form-control" />
+        <span asp-validation-for="Code" class="text-danger"></span>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div> 
-
-<style scoped>
-    .create-form {
-        border: solid black 1px;
-        max-height: 800px;
-        max-width: 800px;
-        margin: auto;
-        padding: 10px;
-    }
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}   
+    <div class="form-group">
+        <label asp-for="RoomId" class="control-label"></label>
+        <input asp-for="RoomId" class="form-control" />
+        <span asp-validation-for="RoomId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="StartDate" class="control-label"></label>
+        <input asp-for="StartDate" class="form-control" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EndDate" class="control-label"></label>
+        <input asp-for="EndDate" class="form-control" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NumberOfPeople" class="control-label"></label>
+        <input asp-for="NumberOfPeople" class="form-control" />
+        <span asp-validation-for="NumberOfPeople" class="text-danger"></span>
+    </div>
+  @*   <div class="form-group">
+        <label asp-for="IsConfirmed" class="control-label"></label>
+        <input asp-for="IsConfirmed" class="form-control" />
+        <span asp-validation-for="IsConfirmed" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IsDeleted" class="control-label"></label>
+        <input asp-for="IsDeleted" class="form-control" />
+        <span asp-validation-for="IsDeleted" class="text-danger"></span>
+    </div> *@
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>

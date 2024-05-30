@@ -12,6 +12,6 @@ namespace ConferenceRoomBooking.DataLayer.Entities
 
         [Required]
         public int MaximumCapacity { get; set; }
-        public bool IsDeleted { get; set; }
+       // public bool IsDeleted { get; set; }
     }
 }

@@ -1,70 +1,95 @@
-﻿using ConferenceRoomBooking.Models;
-using ConferenceRoomBooking.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
 
-[Route("api/[controller]")]
-[ApiController]
-public class UnavailabilityPeriodController : Controller
+namespace ConferenceRoomBooking.Controllers
 {
-    private readonly IUnavailabilityPeriodService _unavailabilityPeriodService;
+    using ConferenceRoomBooking.DataLayer.DBContext;
+    using ConferenceRoomBooking.DataLayer.Entities;
+    using ConferenceRoomBooking.Models;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using System.Threading.Tasks;
 
-    public UnavailabilityPeriodController(IUnavailabilityPeriodService unavailabilityPeriodService)
+    public class UnavailabilityPeriodsController : Controller
     {
-        _unavailabilityPeriodService = unavailabilityPeriodService;
+        private readonly ConferenceRoomBookingContext _context;
+
+        public UnavailabilityPeriodsController(ConferenceRoomBookingContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.UnavailabilityPeriods.ToListAsync());
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(UnavailabilityPeriod unavailabilityPeriod)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(unavailabilityPeriod);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(unavailabilityPeriod);
+        }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var unavailabilityPeriod = await _context.UnavailabilityPeriods.FindAsync(id);
+            if (unavailabilityPeriod == null)
+            {
+                return NotFound();
+            }
+            return View(unavailabilityPeriod);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, UnavailabilityPeriod unavailabilityPeriod)
+        {
+            if (id != unavailabilityPeriod.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(unavailabilityPeriod);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UnavailabilityPeriodExists(unavailabilityPeriod.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(unavailabilityPeriod);
+        }
+
+        private bool UnavailabilityPeriodExists(int id)
+        {
+            return _context.UnavailabilityPeriods.Any(e => e.Id == id);
+        }
     }
 
-    [HttpPost]
-    public IActionResult CreateUnavailabilityPeriod([FromBody] UnavailabilityPeriodModel model)
-    {
-        try
-        {
-            _unavailabilityPeriodService.AddUnavailabilityPeriod(model.StartDate, model.EndDate);
-            return Ok("Unavailability period created successfully");
-        }
-        catch (Exception ex)
-        {
-            return BadRequest($"Failed to create unavailability period: {ex.Message}");
-        }
-    }
-
-    [HttpGet("{id}")]
-    public IActionResult ViewUnavailabilityPeriod(int id)
-    {
-        var unavailabilityPeriod = _unavailabilityPeriodService.GetUnavailabilityPeriodById(id);
-        if (unavailabilityPeriod == null)
-        {
-            return NotFound("Unavailability period not found");
-        }
-        return Ok(unavailabilityPeriod);
-    }
-
-    [HttpPut("{id}")]
-    public IActionResult UpdateUnavailabilityPeriod(int id, [FromBody] UnavailabilityPeriodModel model)
-    {
-        try
-        {
-            _unavailabilityPeriodService.UpdateUnavailabilityPeriod(id, model.StartDate, model.EndDate);
-            return Ok("Unavailability period updated successfully");
-        }
-        catch (Exception ex)
-        {
-            return BadRequest($"Failed to update unavailability period: {ex.Message}");
-        }
-    }
-
-    [HttpDelete("{id}")]
-    public IActionResult DeleteUnavailabilityPeriod(int id)
-    {
-        try
-        {
-            _unavailabilityPeriodService.DeleteUnavailabilityPeriod(id);
-            return Ok("Unavailability period deleted successfully");
-        }
-        catch (Exception ex)
-        {
-            return BadRequest($"Failed to delete unavailability period: {ex.Message}");
-        }
-    }
 }

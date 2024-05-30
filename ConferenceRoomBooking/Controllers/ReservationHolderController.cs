@@ -1,64 +1,94 @@
-﻿using ConferenceRoomBooking.Models;
-using ConferenceRoomBooking.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-[Route("api/[controller]")]
-[ApiController]
-public class ReservationHolderController : Controller
+﻿namespace ConferenceRoomBooking.Controllers
 {
-    private readonly IReservationHolderService _reservationHolderService;
-    public ReservationHolderController(IReservationHolderService reservationHolderService)
+    using ConferenceRoomBooking.DataLayer.DBContext;
+    using ConferenceRoomBooking.DataLayer.Entities;
+    using ConferenceRoomBooking.Models;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using System.Threading.Tasks;
+
+    public class ReservationHoldersController : Controller
     {
-        _reservationHolderService = reservationHolderService;
+        private readonly ConferenceRoomBookingContext _context;
+
+        public ReservationHoldersController(ConferenceRoomBookingContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var reservationHolders = await _context.ReservationHolders.Include(r => r.Booking).ToListAsync();
+            return View(reservationHolders);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(ReservationHolder reservationHolder)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(reservationHolder);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(reservationHolder);
+        }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var reservationHolder = await _context.ReservationHolders.FindAsync(id);
+            if (reservationHolder == null)
+            {
+                return NotFound();
+            }
+            return View(reservationHolder);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, ReservationHolder reservationHolder)
+        {
+            if (id != reservationHolder.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(reservationHolder);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ReservationHolderExists(reservationHolder.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(reservationHolder);
+        }
+
+        private bool ReservationHolderExists(int id)
+        {
+            return _context.ReservationHolders.Any(e => e.Id == id);
+        }
     }
-    [HttpPost]
-    public IActionResult CreateReservationHolder([FromBody] ReservationHolderModel model)
-    {
-        try
-        {
-            _reservationHolderService.AddReservationHolder(model.IdCardNumber, model.Name, model.Surname, model.Email, model.PhoneNumber, model.Notes, model.BookingId);
-            return Ok("Reservation holder created successfully");
-        }
-        catch (Exception ex)
-        {
-            return BadRequest($"Failed to create reservation holder: {ex.Message}");
-        }
-    }
-    [HttpGet("{id}")]
-    public IActionResult ViewReservationHolder(int id)
-    {
-        var reservationHolder = _reservationHolderService.GetReservationHolderById(id);
-        if (reservationHolder == null)
-        {
-            return NotFound("Reservation holder not found");
-        }
-        return Ok(reservationHolder);
-    }
-    [HttpPut("{id}")]
-    public IActionResult UpdateReservationHolder(int id, [FromBody] ReservationHolderModel model)
-    {
-        try
-        {
-            _reservationHolderService.UpdateReservationHolder(id, model.IdCardNumber, model.Name, model.Surname, model.Email, model.PhoneNumber, model.Notes, model.BookingId);
-            return Ok("Reservation holder updated successfully");
-        }
-        catch (Exception ex)
-        {
-            return BadRequest($"Failed to update reservation holder: {ex.Message}");
-        }
-    }
-    [HttpDelete("{id}")]
-    public IActionResult DeleteReservationHolder(int id)
-    {
-        try
-        {
-            _reservationHolderService.DeleteReservationHolder(id);
-            return Ok("Reservation holder deleted successfully");
-        }
-        catch (Exception ex)
-        {
-            return BadRequest($"Failed to delete reservation holder: {ex.Message}");
-        }
-    }
+
 }
